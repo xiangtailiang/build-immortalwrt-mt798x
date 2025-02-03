@@ -1,4 +1,4 @@
-name: asr_3000
+name: cmcc_rax3000m_nand
 
 on:
   repository_dispatch:
@@ -15,7 +15,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   TZ: Asia/Shanghai
-  DEVICE: asr_3000
+  DEVICE: cmcc_rax3000m_nand
   UPLOAD_OUTPUT: true
 
 jobs:
@@ -59,7 +59,7 @@ jobs:
         # echo "src-git small https://github.com/kenzok8/small" >> ./feeds.conf.default
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        cp -f $GITHUB_WORKSPACE/asr_3000.config $GITHUB_WORKSPACE/openwrt/.config
+        cp -f $GITHUB_WORKSPACE/cmcc_rax3000m_nand.config $GITHUB_WORKSPACE/openwrt/.config
         ./scripts/feeds install -a
 
     - name: 修改 Lan IP
