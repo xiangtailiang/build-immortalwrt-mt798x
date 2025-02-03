@@ -1,4 +1,4 @@
-name: t7
+name: asr_3000
 
 on:
   repository_dispatch:
@@ -15,7 +15,7 @@ env:
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: .config
   TZ: Asia/Shanghai
-  DEVICE: 360t7
+  DEVICE: asr_3000
   UPLOAD_OUTPUT: true
 
 jobs:
