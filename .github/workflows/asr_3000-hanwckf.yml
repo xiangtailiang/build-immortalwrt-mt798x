@@ -48,11 +48,6 @@ on:
         required: true
         default: false
         type: boolean
-      NO_DOCKERMAN:
-        description: 'Not build luci-app-dockerman'
-        required: true
-        default: false
-        type: boolean
       ssh:
         description: 'SSH connection to Actions'
         required: false
@@ -181,22 +176,7 @@ jobs:
         else
                 cp $GITHUB_WORKSPACE/asr_3000-hanwckf/mt79xx_20231229-4012a0_eeprom.tar.xz dl/mt79xx_20231229-4012a0.tar.xz
         fi
-        network_config="target/linux/mediatek/mt7981/base-files/etc/board.d/02_network"
-
-        sed -i '/\*abt,asr3000\*\)/,/;;/c\
-                *abt,asr3000*)\
-                        label_mac=$(mtd_get_mac_ascii art MAC_ADDRESS)\
-                        lan_mac=$label_mac\
-                        wan_mac="$(macaddr_add $label_mac 1)"\
-                        local wifi_mac="$(macaddr_add $label_mac 2)"\
-                        sed -i '"'"'/MacAddress=$wifi_mac/d'"'"' /etc/wireless/mediatek/mt7981.dbdc.b0.dat\
-                        echo "MacAddress=$wifi_mac" >> /etc/wireless/mediatek/mt7981.dbdc.b0.dat\
-                        wifi_mac="$(macaddr_add $lan_mac 3)"\
-                        sed -i '"'"'/MacAddress=$wifi_mac/d'"'"' /etc/wireless/mediatek/mt7981.dbdc.b1.dat\
-                        echo "MacAddress=$wifi_mac" >> /etc/wireless/mediatek/mt7981.dbdc.b1.dat\
-                        ;;' "$network_config"
-
-        cat $network_config
+        cp -f asr_3000-hanwckf/02_network target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
 
     - name: 使用luci-app-mtk无线配置
       if: github.event.inputs.APP_MTK == 'true'
