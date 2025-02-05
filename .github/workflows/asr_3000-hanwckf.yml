@@ -176,7 +176,7 @@ jobs:
         else
                 cp $GITHUB_WORKSPACE/asr_3000-hanwckf/mt79xx_20231229-4012a0_eeprom.tar.xz dl/mt79xx_20231229-4012a0.tar.xz
         fi
-        cp -f asr_3000-hanwckf/02_network target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
+        cp -f $GITHUB_WORKSPACE/asr_3000-hanwckf/02_network target/linux/mediatek/mt7981/base-files/etc/board.d/02_network
 
     - name: 使用luci-app-mtk无线配置
       if: github.event.inputs.APP_MTK == 'true'
