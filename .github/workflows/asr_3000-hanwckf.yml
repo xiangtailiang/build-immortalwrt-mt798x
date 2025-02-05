@@ -189,7 +189,6 @@ jobs:
                         lan_mac=$label_mac\
                         wan_mac="$(macaddr_add $label_mac 1)"\
                         local wifi_mac="$(macaddr_add $label_mac 2)"\
-                        mtk_facrory_write_mac Factory 4 "$wifi_mac"\
                         sed -i '"'"'/MacAddress=$wifi_mac/d'"'"' /etc/wireless/mediatek/mt7981.dbdc.b0.dat\
                         echo "MacAddress=$wifi_mac" >> /etc/wireless/mediatek/mt7981.dbdc.b0.dat\
                         wifi_mac="$(macaddr_add $lan_mac 3)"\
